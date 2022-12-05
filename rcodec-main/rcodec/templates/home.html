@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block conteudo %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
+
+</head>
+    <body style ="background-color: rgb(224, 224, 224); font-family: Georgia, 'Times New Roman', Times, serif;;">
+        <div class="card-menu" style="display: block"></div>
+            <div class="tecnico" >
+                <div class="card">
+                    <img src="{% static 'images/pi.jpg'%}" alt="image" height="150px">
+                    <h2 style="font-family: Courier New, monospace; font-size: 26px; margin-top: 15px; color: green;"><i class="fa-solid fa-laptop" style="color: black;"></i> Desenvolvimento de P.I</h2>
+                    <p style="font-family:Georgia; color: green;">Clique aqui para acessar o repositório de desenvolvimento de P.I.</p>
+                    <a href="{% url 'repositorio' %}" class="btn" style="background-color: green; color: white; padding: 8px 12px; width: 200px;"><i class="fa-solid fa-folder-open"></i> Acesse aqui</a>
+                </div>
+                <div class="card">
+                    <img src="{% static 'images/tcc.jpg'%}" alt="image" height="150px">
+                    <h2 style="font-family: Courier New, monospace; font-size: 26px; margin-top: 15px; color: green;"><i class="fa-solid fa-user" style="color: black;"></i> TCC</h2>
+                    <p style="font-family:Georgia; color: green;">Clique aqui para acessar o repositório do Ensino Supeior.</p>
+                    <a href="{% url 'tcc' %}" class="btn" style="background-color: green; color: white; padding: 8px 12px; width: 200px;"><i class="fa-solid fa-folder-open"></i> Acesse aqui</a>
+                </div>
+            </div>    
+        </div>
+    </body>
+
+    <style>
+        .tecnico{
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+        }
+
+        .card{
+            height: fit-content;
+            width: auto; 
+            text-align: center; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 40px 18px; 
+            margin: 5px 15px 25px 20px; 
+            border-radius: 35px;
+        }
+    </style>
+{% endblock %}

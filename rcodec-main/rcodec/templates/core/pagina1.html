@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<style>
+    .repositorio{
+        background-color: #fdfdff;
+        border: none;/*1px solid gray; */
+        border-radius: 35px; 
+        padding: 10px 12px; 
+        display: block;
+    }
+
+    .pdf a{
+        border: 1px solid gray; 
+        border-radius: 2px; 
+        color: rgb(110, 23, 23); 
+        padding: 2px 4px;
+    }
+
+    .acoes{
+        padding-bottom: 10px;
+        margin-bottom: 40px; 
+        border-bottom: 1px solid gray; 
+        border-radius: 4px;
+    }
+    div.conteudo  h3 {
+        font-size: 18px; margin-top: -15px; white-space: pre-wrap;
+    }
+
+</style>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
+
+    </head>
+    <body style ="background-color: rgb(224, 224, 224); font-family: Georgia, 'Times New Roman', Times, serif;">
+
+    <div class="repositorio">
+        <div class="titulo" style="text-align: center;">
+            <p><a href="{% url 'index'%}" style="color: green; align-items: left;">Inicio</a> / <a href="{% url 'tcc'%}" style="color: green; align-items: left;">TCC</a></p>
+            <h1 style="color: green; font-size: 36px;">REPOSITÓRIO VITRINE</h1>
+            {% if request.user.is_authenticated %}
+            <p>
+                <a href="{% url 'repositorio.criar' %}" class="btn btn-success" style="margin-top: 5px; margin-bottom: 5px;background-color: green; width: 250px; padding: 10px; border: none; font-size: 20px;"><i class="fa-solid fa-plus"></i> Criar arquivo</a>
+            </p>
+            {% endif %}
+        </div>
+
+        <div class="conteudo">
+            {% for r in repositorio %}
+                <h2 style="font-size: 22px; color:green">{{ r.titulor }} </h2>
+                <br>
+                <h3>{{ r.descricao }}</h3>
+                <br>
+                <div class="pdf" style="margin-bottom: 20px;">
+                    <a href="{{ r.arquivo.url }}"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                </div>
+                {% if request.user.is_authenticated %}
+                <div class="acoes">
+                    <a href="{% url 'repositorio.editar' r.codigo %}" class="btn btn-sm btn-warning" title="Editar categoria"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+
+                    <a href="{% url 'repositorio.excluir' r.codigo %}" class="btn btn-sm btn-danger" title="Excluir" style="color: black;"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="link" style="margin-top: 80px;">
+        <a href="{% url 'home' %}" class="btn btn-success" 
+        style="margin-top: 5px; 
+               margin-bottom: 5px;
+               border-radius: 15px;
+               background-color: #c72222;
+               width: 250px; 
+               padding: 10px; 
+               border: none;">
+            <i class="fa-solid fa-backward-step"></i> VOLTAR</a>
+    </div>
+
+    
+    </body>
+{% endblock %}
